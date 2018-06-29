@@ -8,6 +8,7 @@ const controller = require('./controller.js');
 
 const app = express();
 app.use(bodyParser.json());
+app.use('/', express.static(__dirname));
 
 console.log(process.env.CONNECTION_STRING)
 massive(process.env.CONNECTION_STRING)
@@ -28,4 +29,3 @@ app.listen( port, () => { console.log(`Listening on port ${port}`); });
 
 
 // const port = 4000;
-// app.use('/', express.static(__dirname));

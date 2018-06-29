@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 
 
@@ -21,9 +22,9 @@ class Wizard extends Component {
                 </div>
 
                 <div>
-                    <Wizard1/>
-                    <Wizard2/>
-                    <Wizard3/>
+                    <Route path="/Wizard/Wizard1" component={ Wizard1 }/>
+                    <Route path="/Wizard/Wizard2" component={ Wizard2 }/>
+                    <Route path="/Wizard/Wizard3" component={ Wizard3 }/>
                 </div>
 
             </div>

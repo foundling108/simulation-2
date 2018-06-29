@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { connect } from 'react-redux';
+
+import { updatePlace } from '../../ducks/reducer';
 
 
-class Wizard extends Component {
+class Wizard1 extends Component {
     constructor(props) {
         super(props)
         
@@ -12,10 +14,15 @@ class Wizard extends Component {
             address: '',
             city: '',
             state: '',
-            zipcode: 0
+            zip: 0
         }
         this.handleInput = this.handleInput.bind(this);
-        this.completeButton = this.completeButton.bind(this);
+
+    }
+
+    componentDidMount() {
+        let { name, address, city, state, zip  } = this.props
+        this.setState({name, address, city, state, zip})
     }
 
     handleInput(props, value) {
@@ -36,17 +43,14 @@ class Wizard extends Component {
         this.setState = ({ [props]: value});
     }
 
-    completeButton() {
-        axios.post('/api/houses', this.state)
-        .then( res => {
-            this.props.history.push('/')
-        })
-    }
+
 
     render() {
+        const { updatePlace } = this.props;
+
         return(
             <div>
-                <h1>Add New Listing</h1>
+
                 
 
 
@@ -71,10 +75,18 @@ class Wizard extends Component {
                         <input value={this.state.zip} onChange={e => this.handleInput('zip', e.target.value)} type="number"/>
                     </div>
 
-                    <button onClick={this.completeButton} >Complete</button>
+                    <Link to='/wizard/wizard2'><button>Next Step</button></Link>
             </div>
         )
     }
 }
 
-export default Wizard1;
+function mapStateToProps() {
+  
+
+    return {
+     
+    };
+}
+
+export default connect(mapStateToProps, {updatePlace}) (Wizard1);
